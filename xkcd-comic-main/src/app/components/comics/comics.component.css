@@ -2,14 +2,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 600px;
-	min-height: 800px;
+	min-width: 500px;
+	min-height: 700px;
 }
 
 .image-container img {
 	padding: 45px;
 	height: 75%;
-	max-height: 1100px;
+	max-height: 1000px;
 }
 
 .loading {

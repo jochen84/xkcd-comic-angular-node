@@ -14,7 +14,6 @@ app.get('/api/latest', (req, res) => {
 })
 
 app.get('/api/:id', (req, res) => {
-	console.log('This param ID input: ' + req.params.id)
 	fetch(`https://xkcd.com/${req.params.id}/info.0.json`)
 		.then(res => res.json())
 		.then(json => {
