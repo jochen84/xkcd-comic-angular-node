@@ -6,8 +6,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-	xkcdUrl:string = 'https://getxkcd.now.sh/api/comic?num='
-
 	maxNumberComics:number;
 
 	constructor(private http: HttpClient) { }
@@ -24,7 +22,6 @@ export class ApiService {
 	setMaxNumber(){
 		this.http.get<any>(`api/latest`).subscribe(comic => {
 			this.maxNumberComics = comic.num;
-			console.log('Max number is set to: ' + this.maxNumberComics)
 		});
 	}
 }

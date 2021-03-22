@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common'
 import { ApiService } from 'src/app/services/api.service';
-
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -13,7 +11,7 @@ export class HeaderComponent implements OnInit {
 	comicId:number = 0;
 	lastPath:number[] = [0];
 
-	constructor(private apiService:ApiService, private loc: Location) { }
+	constructor(private apiService:ApiService) { }
 
 	ngOnInit(): void {
 		this.apiService.setMaxNumber();
