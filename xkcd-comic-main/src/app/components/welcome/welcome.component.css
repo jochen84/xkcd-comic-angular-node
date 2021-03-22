@@ -1,0 +1,21 @@
+.welcome-view {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 600px;
+	height: 150px;
+}
+
+.header-text{
+	font-size: xx-large;
+	letter-spacing: 3px;
+}
+.body-text{
+	font-size: small;
+	letter-spacing: 2px;
+}
+
+.icon-text{
+	padding: 15px 5px 0px 5px;
+	vertical-align: bottom
+}

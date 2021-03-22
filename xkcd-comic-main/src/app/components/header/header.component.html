@@ -1,0 +1,17 @@
+<div>
+    <mat-toolbar class="toolbar">
+        <mat-icon (click)="clickBackButton()" class="toolbar-go-back icon">arrow_back</mat-icon>
+        <span class="toolbar-title">{{comicTitle === undefined ? 'xkcd' : comicTitle}}</span>
+        <div [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          	<mat-icon class="toolbar-dots-meny icon">more_vert</mat-icon>
+        </div>
+        <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+            <button mat-menu-item class="popup-btn" (click)="clickDotsMenu()">
+					<div uiSref="getcomicid" [uiParams]="{id: comicId}">
+						<mat-icon>shuffle</mat-icon>
+						<span>random comic</span>
+					</div>
+			</button>
+        </mat-menu>
+    </mat-toolbar>
+</div>
