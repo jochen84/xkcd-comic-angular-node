@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { Location } from '@angular/common'
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -11,15 +12,17 @@ export class HeaderComponent implements OnInit {
 	comicId:number = 0;
 	lastPath:number[] = [0];
 
-	constructor(private apiService:ApiService) { }
+	constructor(private apiService:ApiService, private loc: Location) { }
 
 	ngOnInit(): void {
 		this.apiService.setMaxNumber();
 		//Preloads a random comic and gets id for url params
 		setTimeout(() => this.apiService.getRandomComic().then(comic => {
-			this.comicId = comic.num;
+	 		this.comicId = comic.num;
 		}), 1700)
-			
+		//this.apiService.getRandomComic().then(comic => {
+		//	this.comicId = comic.num;
+		//});
 	}
 
 	clickDotsMenu() {
@@ -30,12 +33,14 @@ export class HeaderComponent implements OnInit {
 		this.apiService.getRandomComic().then(comic => {
 			this.comicId = comic.num;
 		});
-
+		console.log(this.loc.path())
+		console.log(this.loc.getState())
 	}
 
 	clickBackButton() {
 		this.apiService.getComic(this.lastPath[this.lastPath.length-2]).then(comic => {
 			setTimeout(() => (this.comicTitle = comic.title), 800);
+			//this.comicTitle = comic.title;
 			this.lastPath.pop();
 		})
 		.catch(err => {
