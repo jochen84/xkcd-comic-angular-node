@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Location } from '@angular/common'
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -12,17 +11,15 @@ export class HeaderComponent implements OnInit {
 	comicId:number = 0;
 	lastPath:number[] = [0];
 
-	constructor(private apiService:ApiService, private loc: Location) { }
+	constructor(private apiService:ApiService) { }
 
 	ngOnInit(): void {
 		this.apiService.setMaxNumber();
 		//Preloads a random comic and gets id for url params
 		setTimeout(() => this.apiService.getRandomComic().then(comic => {
-	 		this.comicId = comic.num;
+			this.comicId = comic.num;
 		}), 1700)
-		//this.apiService.getRandomComic().then(comic => {
-		//	this.comicId = comic.num;
-		//});
+			
 	}
 
 	clickDotsMenu() {
@@ -33,21 +30,24 @@ export class HeaderComponent implements OnInit {
 		this.apiService.getRandomComic().then(comic => {
 			this.comicId = comic.num;
 		});
-		console.log(this.loc.path())
-		console.log(this.loc.getState())
+
 	}
 
 	clickBackButton() {
-		this.apiService.getComic(this.lastPath[this.lastPath.length-2]).then(comic => {
-			setTimeout(() => (this.comicTitle = comic.title), 800);
-			//this.comicTitle = comic.title;
-			this.lastPath.pop();
-		})
-		.catch(err => {
+		if(this.lastPath[this.lastPath.length-2] == 0){
 			this.comicTitle = 'xkcd'
 			this.lastPath = [0]
+		} else {
+		this.apiService.getComic(this.lastPath[this.lastPath.length-2]).then(comic => {
+			setTimeout(() => (this.comicTitle = comic.title), 800);
+			this.lastPath.pop();
+			console.log(this.lastPath)
+			console.log("Lastpath pop!")
 		})
-
+		.catch(err => {
+			console.log(err)
+		})
+	}
 		//this.loc.back();
 		window.history.back();
 	}
