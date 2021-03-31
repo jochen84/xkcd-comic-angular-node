@@ -20,7 +20,7 @@ export class ApiService {
 	}
 
 	setMaxNumber(){
-		this.http.get<any>(`api/latest`).subscribe(comic => {
+		return this.http.get<any>(`api/latest`).toPromise().then(comic => {
 			this.maxNumberComics = comic.num;
 		});
 	}
