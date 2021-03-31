@@ -1,6 +1,10 @@
 <div>
     <mat-toolbar class="toolbar">
-        <mat-icon (click)="clickBackButton()" class="toolbar-go-back icon">arrow_back</mat-icon>
+        
+        <mat-icon *ngIf="lastPath.length >= 2" (click)="clickBackButton()" class="toolbar-go-back icon">arrow_back</mat-icon>
+        <a *ngIf="lastPath.length == 1" href="https://google.com">
+            <mat-icon class="icon">clear</mat-icon>
+        </a>
         <span class="toolbar-title">{{comicTitle === undefined ? 'xkcd' : comicTitle}}</span>
         <div [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           	<mat-icon class="toolbar-dots-meny icon">more_vert</mat-icon>

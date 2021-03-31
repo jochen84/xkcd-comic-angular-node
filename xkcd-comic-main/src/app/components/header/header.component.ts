@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
 			this.apiService.getRandomComic().then(comic => {
 				this.comicId = comic.num;
 			})
-		);	
+		);
+		this.lastPath = [0];
 	}
 
 	clickDotsMenu() {
@@ -45,7 +46,6 @@ export class HeaderComponent implements OnInit {
 			console.log(err)
 		})
 	}
-		//this.loc.back();
 		window.history.back();
 	}
 }
